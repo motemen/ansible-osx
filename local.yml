@@ -1,0 +1,53 @@
+- hosts: localhost
+  connection: local
+  environment:
+    GHQ_ROOT: /Users/{{ ansible_ssh_user }}/dev/src
+  tasks:
+    - name: install homebrew packages
+      homebrew:
+        name: '{{ item }}'
+      with_items:
+        - ghq
+        - vim
+        - zsh
+    - name: get dotfiles
+      shell: ghq get https://github.com/motemen/dotfiles
+      args:
+        creates: /Users/{{ ansible_ssh_user }}/dev/src/github.com/motemen/dotfiles/.git
+    - name: setup dotfiles
+      shell: ~/dev/src/github.com/motemen/dotfiles/setup
+      args:
+        creates: /Users/{{ ansible_ssh_user }}/.zshrc
+    - name: install homebrew packages
+      homebrew:
+        name: '{{ item }}'
+      with_items:
+        - brew-cask
+        - checkbashisms
+        - coreutils
+        - docker
+        - docker-compose
+        - docker-machine
+        - entr
+        - envchain
+        - fzf
+        - ghi
+        - git
+        - go
+        - heroku-toolbelt
+        - highlight
+        - httpie
+        - hub
+        - jq
+        - keychain
+        - plv
+        - pstree
+        - pup
+        - rainbarf
+        - rbenv
+        - reattach-to-user-namespace
+        - sbt
+        - tig
+        - tmux
+        - tree
+        - zsh-completions
