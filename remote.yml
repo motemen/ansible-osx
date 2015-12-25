@@ -1,0 +1,28 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+    - name: setup homebrew dir
+      file:
+        state: directory
+        path: /usr/local
+        group: admin
+        mode: g+rwx
+      become: yes
+    - name: clone homebrew
+      git:
+        repo: https://github.com/Homebrew/homebrew.git
+        dest: /usr/local
+        depth: 1
+        accept_hostkey: yes
+        update: no
+    - name: install requirements
+      homebrew:
+        name: '{{ item }}'
+        state: latest
+      with_items:
+        - ansible
+    - name: setup playbooks
+      git:
+        repo: https://github.com/motemen/ansible-osx
+        dest: ~/setup
