@@ -1,0 +1,16 @@
+= ansible-osx
+
+1. Install XCode
+2. `xcode-select --install`
+3. `sudo xcodebuild -license`
+3. From remote do:
++
+----
+ansible-playbook --ask-pass --ask-become-pass -i wolfe.local, -u motemen remote.yml -vvv
+----
+4. On new machine do:
++
+----
+cd ~/setup
+ansible-playbook -i localhost, -u motemen local.yml -vvv
+----

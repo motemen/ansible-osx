@@ -24,5 +24,6 @@
         - ansible
     - name: setup playbooks
       git:
-        repo: https://github.com/motemen/ansible-osx
-        dest: ~/setup
+        repo: https://github.com/motemen/ansible-osx.git
+        dest: /Users/{{ ansible_ssh_user }}/setup
+        update: no
