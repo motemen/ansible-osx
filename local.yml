@@ -40,7 +40,7 @@
         - hub
         - jq
         - keychain
-        - plv
+        - plenv
         - pstree
         - pup
         - rainbarf
@@ -50,4 +50,3 @@
         - tig
         - tmux
         - tree
-        - zsh-completions
