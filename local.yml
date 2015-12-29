@@ -2,6 +2,7 @@
   connection: local
   environment:
     GHQ_ROOT: /Users/{{ ansible_ssh_user }}/dev/src
+    GOPATH: /Users/{{ ansible_ssh_user }}/dev/go
   tasks:
     - name: install homebrew packages
       homebrew:
@@ -13,7 +14,7 @@
     - name: get dotfiles
       shell: ghq get https://github.com/motemen/dotfiles
       args:
-        creates: /Users/{{ ansible_ssh_user }}/dev/src/github.com/motemen/dotfiles/.git
+        creates: ~/dev/src/github.com/motemen/dotfiles/.git
     - name: setup dotfiles
       shell: ~/dev/src/github.com/motemen/dotfiles/setup
       args:
@@ -22,7 +23,6 @@
       homebrew:
         name: '{{ item }}'
       with_items:
-        - brew-cask
         - checkbashisms
         - coreutils
         - docker
@@ -40,13 +40,46 @@
         - hub
         - jq
         - keychain
+        - node
         - plenv
         - pstree
+        - pt
         - pup
         - rainbarf
         - rbenv
         - reattach-to-user-namespace
         - sbt
+        - shellcheck
         - tig
         - tmux
         - tree
+    - name: mkdir ~/bin
+      file:
+        state: directory
+        path: ~/bin
+    - name: install git-contrib tools
+      shell: |
+        cp $(brew --prefix git)/share/git-core/contrib/{{ item }}/{{ item }} ~/bin && \
+        chmod +x ~/bin/{{ item }}
+      args:
+        creates: ~/bin/{{ item }}
+      with_items:
+        - diff-highlight
+        - git-jump
+    - name: install go-provided tools
+      shell: go get {{ item }}
+      args:
+        creates: ~/dev/go/bin/{{ item | basename }}
+      with_items:
+        - github.com/golang/lint/golint
+        - github.com/jstemmer/gotags
+        - github.com/motemen/browsercat
+        - github.com/motemen/ghq
+        - github.com/motemen/github-commit-status-mark
+        - github.com/motemen/go-iferr/cmd/goiferr
+        - github.com/motemen/go-quickfix/cmd/goquickfix
+        - github.com/motemen/go-typeswitch-gen/cmd/tsgen
+        - github.com/motemen/gore
+        - github.com/motemen/hub-pr
+        - github.com/nsf/gocode
+        - golang.org/x/tools/cmd/goimports
