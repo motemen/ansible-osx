@@ -68,7 +68,7 @@
         - diff-highlight
         - git-jump
     - name: install go-provided tools
-    shell: go get -u -v {{ item }}
+      shell: go get -u -v {{ item }}
       args:
         creates: ~/dev/go/bin/{{ item | basename }}
       with_items:
