@@ -41,6 +41,7 @@
         - hub
         - jq
         - keychain
+        - mercurial
         - node
         - plenv
         - pstree
