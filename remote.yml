@@ -15,7 +15,6 @@
         dest: /usr/local
         depth: 1
         accept_hostkey: yes
-        update: no
     - name: install requirements
       homebrew:
         name: '{{ item }}'
@@ -26,4 +25,3 @@
       git:
         repo: https://github.com/motemen/ansible-osx.git
         dest: /Users/{{ ansible_ssh_user }}/setup
-        update: no

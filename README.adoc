@@ -1,15 +1,22 @@
 = ansible-osx
 
-1. Install XCode
-2. `xcode-select --install`
-3. `sudo xcodebuild -license`
+1. On the new machine do:
+   * Hit ⌘-Space, "Share" and enter, in the dialog shown enable remote login
+   * Optionally set computer name
 3. From remote do:
 +
 ----
-ansible-playbook --ask-pass --ask-become-pass -i wolfe.local, -u motemen remote.yml -vvv
+ansible-playbook -k -K -i nubilum.local, -u motemen remote.yml -vvv
 ----
-4. On new machine do:
 +
+which will fail with dialog shown on the new machine. Proceed the dialog to download developer tools, then run the command above again
+3. Now you can leave remote machine and switch off remote login
+4. On new machine do:
+   * Hit ⌘-Space, "App Store" and enter, in the App Store hit ⌘-Space, "Xcode" and enter, click install
+   * Takes some minutes :coffee:
+   * `sudo xcodebuild -license`
++
+5. On the new machine do:
 ----
 cd ~/setup
 ansible-playbook -i localhost, -u motemen local.yml -vvv

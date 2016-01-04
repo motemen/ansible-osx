@@ -1,4 +1,5 @@
 - hosts: localhost
+  gather_facts: no
   connection: local
   environment:
     GHQ_ROOT: /Users/{{ ansible_ssh_user }}/dev/src
@@ -67,7 +68,7 @@
         - diff-highlight
         - git-jump
     - name: install go-provided tools
-      shell: go get {{ item }}
+    shell: go get -u -v {{ item }}
       args:
         creates: ~/dev/go/bin/{{ item | basename }}
       with_items:
