@@ -92,6 +92,7 @@
         - android-studio
         - dropbox
         - firefox
+        - flux
         - google-chrome
         - google-japanese-ime
         - intellij-idea-ce
@@ -109,3 +110,13 @@
     - name: chsh to zsh
       shell: chsh -s /usr/local/bin/zsh
       when: lookup('env', 'SHELL') != '/usr/local/bin/zsh'
+    - name: set osx defaults
+      shell: defaults write -g {{ item }}
+      with_items:
+        - ApplePressAndHoldEnabled -bool false
+        - KeyRepeat -int 2
+        - com.apple.keyboard.fnState -int 1
+        - com.apple.mouse.scaling -float 1.5
+        - com.apple.scrollwheel.scaling -float 0.3125
+        - com.apple.trackpad.scaling -float 1.5
+        - com.apple.trackpad.scrolling -float 0.5
