@@ -75,7 +75,6 @@
       with_items:
         - github.com/golang/lint/golint
         - github.com/jstemmer/gotags
-        - github.com/motemen/browsercat
         - github.com/motemen/ghq
         - github.com/motemen/github-commit-status-mark
         - github.com/motemen/go-iferr/cmd/goiferr
@@ -85,3 +84,28 @@
         - github.com/motemen/hub-pr
         - github.com/nsf/gocode
         - golang.org/x/tools/cmd/goimports
+    - name: install homebrew cask packages
+      homebrew_cask:
+        name: '{{ item }}'
+      with_items:
+        - 1password
+        - android-studio
+        - dropbox
+        - firefox
+        - google-chrome
+        - google-japanese-ime
+        - intellij-idea-ce
+        - licecap
+        - slack
+        - slate
+        - radiant-player
+        - vagrant
+        - virtualbox
+    - name: register homebrew-installed zsh
+      lineinfile:
+        dest: /etc/shells
+        line: /usr/local/bin/zsh
+      become: true
+    - name: chsh to zsh
+      shell: chsh -s /usr/local/bin/zsh
+      when: lookup('env', 'SHELL') != '/usr/local/bin/zsh'
