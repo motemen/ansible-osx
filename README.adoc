@@ -19,5 +19,5 @@ which will fail with dialog shown on the new machine. Proceed the dialog to down
 5. On the new machine do:
 ----
 cd ~/setup
-ansible-playbook -i localhost, -u motemen local.yml -vvv
+./local.sh
 ----
