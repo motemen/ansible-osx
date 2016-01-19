@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<root>
+    <list>
+        <item>
+            <name>Right Shift to hat-amp</name>
+            <identifier>private.right_shift_to_hat_amp</identifier>
+            <autogen>--KeyToKey-- KeyCode::SHIFT_R, ModifierFlag::SHIFT_L | ModifierFlag::SHIFT_R, KeyCode::KEY_7, ModifierFlag::SHIFT_R</autogen>
+            <autogen>--KeyToKey-- KeyCode::SHIFT_R, KeyCode::KEY_6, ModifierFlag::SHIFT_R</autogen>
+        </item>
+        <item>
+            <name>Ctrl-W to Opt-Delete (Chrome)</name>
+            <only>GOOGLE_CHROME</only>
+            <identifier>private.ctrl_w_to_opt_delete</identifier>
+            <autogen>--KeyToKey-- KeyCode::W, ModifierFlag::CONTROL_L, KeyCode::DELETE, ModifierFlag::OPTION_L</autogen>
+        </item>
+    </list>
+</root>

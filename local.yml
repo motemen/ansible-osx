@@ -111,7 +111,7 @@
       shell: chsh -s /usr/local/bin/zsh
       when: lookup('env', 'SHELL') != '/usr/local/bin/zsh'
     - name: set osx defaults
-      shell: defaults write -g {{ item }}
+      command: defaults write -g {{ item }}
       with_items:
         - ApplePressAndHoldEnabled -bool false
         - KeyRepeat -int 2
@@ -120,3 +120,19 @@
         - com.apple.scrollwheel.scaling -float 0.3125
         - com.apple.trackpad.scaling -float 1.5
         - com.apple.trackpad.scrolling -float 0.5
+    - name: install karabiner private.xml
+      shell: cp files/karabiner-private.xml ~/Library/Application\ Support/Karabiner/private.xml
+    - name: configure karabiner
+      command: /Applications/Karabiner.app/Contents/Library/bin/karabiner set {{ item.key }} {{ item.value }}
+      with_dict:
+        repeat.initial_wait: 200
+        private.right_shift_to_hat_amp: 1
+        private.ctrl_w_to_opt_delete: 1
+        remap.simultaneouskeypresses_mouse_keys_mode_commandSD: 1
+        option.emacsmode_controlLeftbracket: 1
+        option.emacsmode_controlM: 1
+        option.emacsmode_controlH: 1
+        repeat.wait: 25
+        option.mousekeys_mode_uio2click: 1
+        parameter.mouse_key_scroll_natural_direction: 1
+        option.emacsmode_controlPNBF: 1
