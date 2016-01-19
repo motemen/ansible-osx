@@ -55,6 +55,9 @@
         - tig
         - tmux
         - tree
+        - mysql
+        - postgresql
+        - redis
     - name: mkdir ~/bin
       file:
         state: directory
