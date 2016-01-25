@@ -55,6 +55,7 @@
         - tig
         - tmux
         - tree
+        - w3m
         - mysql
         - postgresql
         - redis
