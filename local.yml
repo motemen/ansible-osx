@@ -140,3 +140,7 @@
         option.mousekeys_mode_uio2click: 1
         parameter.mouse_key_scroll_natural_direction: 1
         option.emacsmode_controlPNBF: 1
+    - name: install Java bundled fonts
+      shell: cp -n "$(/usr/libexec/java_home)"/jre/lib/fonts/*.ttf /Library/Fonts/
+      args:
+        creates: /Library/Fonts/LucidaTypewriterRegular.ttf

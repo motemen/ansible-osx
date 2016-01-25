@@ -2,7 +2,7 @@
 
 set -v
 
-ansible-playbook -i localhost, -u "$(whoami)" -K local.yml -vvv
+ansible-playbook -i localhost, -u "$(whoami)" -K local.yml -v
 
 if [ -e ~/.ssh/id_dsa ]; then
     :
