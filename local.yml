@@ -89,6 +89,7 @@
         - github.com/motemen/hub-pr
         - github.com/nsf/gocode
         - golang.org/x/tools/cmd/goimports
+        - github.com/constabulary/gb/...
     - name: install homebrew cask packages
       homebrew_cask:
         name: '{{ item }}'
