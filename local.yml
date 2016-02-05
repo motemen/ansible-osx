@@ -20,12 +20,18 @@
       shell: ~/dev/src/github.com/motemen/dotfiles/setup
       args:
         creates: /Users/{{ ansible_ssh_user }}/.zshrc
+    - name: tap homebrew taps
+      homebrew_tap:
+        name: '{{ item }}'
+      with_items:
+        - homebrew/versions
     - name: install homebrew packages
       homebrew:
         name: '{{ item }}'
       with_items:
         - checkbashisms
         - coreutils
+        - ctags
         - docker
         - docker-compose
         - docker-machine
@@ -41,8 +47,10 @@
         - hub
         - jq
         - keychain
+        - less
         - mercurial
         - node
+        - pass
         - plenv
         - perl-build
         - pstree
@@ -57,7 +65,6 @@
         - tmux
         - tree
         - w3m
-        - mysql
         - postgresql
         - redis
     - name: mkdir ~/bin
@@ -74,7 +81,7 @@
         - diff-highlight
         - git-jump
     - name: install go-provided tools
-      shell: go get -u -v {{ item }}
+      shell: go get -v {{ item }}
       args:
         creates: ~/dev/go/bin/{{ item | basename }}
       with_items:
@@ -90,6 +97,15 @@
         - github.com/nsf/gocode
         - golang.org/x/tools/cmd/goimports
         - github.com/constabulary/gb/...
+#   - name: install gem-provided tools
+#     shell: |
+#       gem install {{ item }}
+#       echo "RBENV_VERSION=$RBENV_VERSION {{ item }}" > ~/bin/{{ item }}
+#       chmod +x ~/bin/{{ item }}
+#     environment:
+#       RBENV_VERSION: 2.2.4
+#     with_items:
+#       - git-browse-remote
     - name: install homebrew cask packages
       homebrew_cask:
         name: '{{ item }}'
