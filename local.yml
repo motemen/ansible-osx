@@ -9,17 +9,8 @@
       homebrew:
         name: '{{ item }}'
       with_items:
-        - ghq
         - vim
         - zsh
-    - name: get dotfiles
-      shell: ghq get https://github.com/motemen/dotfiles
-      args:
-        creates: ~/dev/src/github.com/motemen/dotfiles/.git
-    - name: setup dotfiles
-      shell: ~/dev/src/github.com/motemen/dotfiles/setup
-      args:
-        creates: /Users/{{ ansible_ssh_user }}/.zshrc
     - name: tap homebrew taps
       homebrew_tap:
         name: '{{ item }}'
@@ -63,6 +54,7 @@
         - shellcheck
         - tig
         - tmux
+        - tesseract
         - tree
         - w3m
         - postgresql
@@ -106,6 +98,14 @@
 #       RBENV_VERSION: 2.2.4
 #     with_items:
 #       - git-browse-remote
+    - name: get dotfiles
+      shell: ghq get https://github.com/motemen/dotfiles
+      args:
+        creates: ~/dev/src/github.com/motemen/dotfiles/.git
+    - name: setup dotfiles
+      shell: ~/dev/src/github.com/motemen/dotfiles/setup
+      args:
+        creates: /Users/{{ ansible_ssh_user }}/.zshrc
     - name: install homebrew cask packages
       homebrew_cask:
         name: '{{ item }}'
