@@ -16,6 +16,8 @@
         name: '{{ item }}'
       with_items:
         - homebrew/versions
+        - homebrew/science
+        - motemen/motemen
     - name: install homebrew packages
       homebrew:
         name: '{{ item }}'
@@ -59,6 +61,7 @@
         - w3m
         - postgresql
         - redis
+        - lgtm.sh
     - name: mkdir ~/bin
       file:
         state: directory
