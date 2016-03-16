@@ -92,6 +92,7 @@
         - github.com/nsf/gocode
         - golang.org/x/tools/cmd/goimports
         - github.com/constabulary/gb/...
+        - github.com/mitchellh/gox
 #   - name: install gem-provided tools
 #     shell: |
 #       gem install {{ item }}
